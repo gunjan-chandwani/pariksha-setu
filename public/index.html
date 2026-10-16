@@ -220,6 +220,10 @@ aside .navcaption{padding:13px 13px 9px;color:#91a9ce;font-size:10px;letter-spac
 @media(max-width:1050px){.layout{grid-template-columns:220px minmax(0,1fr)}aside{padding:16px 10px}.main{padding:22px 18px}}
 @media(max-width:720px){.topbar{height:auto;min-height:70px;padding:12px}.layout{display:block;min-height:calc(100vh - 70px)}aside{position:sticky;top:70px;height:auto;z-index:3;padding:8px;background:#10213f;box-shadow:0 8px 18px #10213f16}.nav{font-size:11px;padding:9px 11px}.nav .ico{width:20px;height:20px}.main{padding:18px 12px}.cards{gap:10px}.statcard{padding:14px}.statnum{font-size:26px}.panel{padding:16px;border-radius:14px}.heading{gap:8px}.heading h1{font-size:23px}.tablewrap{border-radius:10px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Hide the entire Faculty quick-action panel from COE and Moderator dashboards */
+.app[data-role="COE"] .faculty-action-panel,
+.app[data-role="Moderator"] .faculty-action-panel{display:none!important}
 </style></head>
 <body>
 <div id="loginScreen" class="login-screen">
