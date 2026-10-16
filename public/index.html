@@ -256,21 +256,93 @@ aside .navcaption{padding:13px 13px 9px;color:#91a9ce;font-size:10px;letter-spac
 .moderator-edit-table .mod-action-input{min-width:150px}
 .moderator-edit-table .mini{font-size:10px;margin-top:5px;line-height:1.4}
 .moderator-review-card{overflow:hidden}
+
+/* Pariksha Setu visual refresh */
+:root{--navy:#12233f;--navy2:#1b3760;--blue:#2857c5;--cyan:#31b8c5;--bg:#f3f6fb;--ink:#172a45;--muted:#718096;--line:#e3eaf3;--shadow:0 14px 38px rgba(20,39,70,.08)}
+body{background:linear-gradient(135deg,#f4f7fc 0%,#edf3fa 100%);color:var(--ink)}
+.login-screen{min-height:100vh;padding:clamp(16px,3vw,46px);gap:clamp(18px,2.5vw,36px);grid-template-columns:minmax(0,1.12fr) minmax(340px,.88fr);background:radial-gradient(circle at 85% 12%,#e2f3f5 0,transparent 34%),linear-gradient(135deg,#f7f9fd,#eaf0f8);color:#fff}
+.login-copy{position:relative;isolation:isolate;overflow:hidden;max-width:none;width:100%;padding:clamp(25px,4vw,52px);border-radius:28px;border:1px solid rgba(255,255,255,.25);background:linear-gradient(115deg,rgba(10,27,55,.92) 0%,rgba(16,43,79,.84) 54%,rgba(16,52,83,.72) 100%),url('https://manavrachna.edu.in/assets/campus/mru/images/mru-study.webp') center/cover no-repeat;box-shadow:0 24px 65px rgba(14,34,66,.2)}
+.login-copy .brand{margin-bottom:clamp(30px,5vh,58px)}
+.login-copy .brand .logo{background:linear-gradient(135deg,#fff,#a8e9e9);color:#173459;border-radius:14px;box-shadow:0 8px 24px #0002}
+.login-copy .brand strong{font-size:20px;letter-spacing:-.4px}
+.login-copy .brand small{color:#c7d8ef}
+.login-copy .eyebrow{color:#a6f0ee;letter-spacing:2.2px}
+.login-copy h1{font-size:clamp(34px,4.2vw,58px);line-height:1.04;letter-spacing:-1.9px;margin:20px 0}
+.login-copy h1 span{color:#9ce8e8}
+.login-copy .login-intro{max-width:640px;color:#e0e9f6;font-size:clamp(14px,1.2vw,17px);line-height:1.8}
+.workflow-strip{display:flex;align-items:stretch;gap:10px;margin-top:28px;max-width:760px}
+.workflow-step{flex:1;min-width:0;border:1px solid #ffffff38;background:#ffffff12;backdrop-filter:blur(8px);border-radius:15px;padding:14px 13px;display:flex;flex-direction:column;gap:6px}
+.workflow-step>span{display:grid;place-items:center;width:29px;height:29px;border-radius:9px;background:#9ce8e8;color:#123253;font-weight:850;font-size:11px}
+.workflow-step b{font-size:13px;color:#fff}
+.workflow-step small{font-size:11px;line-height:1.45;color:#d3e0f0}
+.workflow-arrow{align-self:center;color:#a7e9e9;font-size:20px;font-weight:800}
+.login-trust{margin-top:26px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;color:#c8d8ed;font-size:9px;letter-spacing:1.2px;font-weight:800}
+.login-trust i{width:4px;height:4px;border-radius:50%;background:#8ce3e2}
+.loginbox{max-width:490px;border:1px solid #ffffffd9;border-radius:26px;padding:clamp(25px,3.3vw,40px);box-shadow:0 25px 70px rgba(25,48,82,.14);background:rgba(255,255,255,.96);backdrop-filter:blur(14px)}
+.login-brand-mark{width:54px;height:54px;border-radius:17px;background:linear-gradient(135deg,#17385f,#2f68c9 65%,#31b8c5);box-shadow:0 10px 22px #2857c52b;display:grid;place-items:center;color:white;font-weight:900;font-size:19px;margin-bottom:20px}
+.loginbox .eyebrow{font-size:10px;letter-spacing:1.6px}
+.loginbox h2{font-size:clamp(24px,2.3vw,30px);letter-spacing:-.8px;margin-top:9px}
+.loginbox>p{line-height:1.65;margin-bottom:24px}
+.rolecard{border-radius:14px;padding:14px 6px;transition:all .18s ease}
+.rolecard:hover{border-color:#a7bde9;background:#f2f6ff;transform:translateY(-2px)}
+.rolecard.selected{border-color:#315fc8;background:#edf3ff;color:#1c469c;box-shadow:inset 0 0 0 1px #315fc8}
+#loginForm .field{margin-bottom:16px}
+#loginForm input{min-height:48px;border-radius:12px;border:1px solid #dce4ef;background:#fbfcff;padding:12px 14px}
+#loginForm input:focus{outline:3px solid #2857c51a;border-color:#6486d6;background:#fff}
+#loginForm button[type=submit]{width:100%;min-height:49px;border-radius:13px;background:linear-gradient(100deg,#214fae,#326fd3 65%,#218eaa);box-shadow:0 9px 20px #2857c52c}
+.demohelp{border:1px solid #e0eaf5;background:#f5f8fc;border-radius:13px;padding:13px 14px;color:#63738a;line-height:1.65;font-size:11px}
+.login-foot{border-top:1px solid #edf0f5;padding-top:17px;margin-top:20px;color:#8a98ab;font-size:9px;letter-spacing:1.5px}
+.topbar{height:78px;padding:0 25px;box-shadow:0 4px 20px #18325308;position:sticky;top:0;z-index:20}
+.topbar .brand strong{font-size:16px;letter-spacing:-.3px}
+.topbar .logo{border-radius:12px;background:linear-gradient(135deg,#17385f,#326fd3,#31b8c5);box-shadow:0 5px 14px #2857c522}
+.layout{gap:20px;padding:20px;max-width:1800px;margin:0 auto}
+aside{border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.92);padding:14px 10px;box-shadow:0 8px 25px #19365808;color:#d9e5fb}
+aside .navcaption{color:#8a9bb5}
+.nav{border-radius:10px;margin:3px 0;padding:10px 12px;transition:background .15s,border-color .15s}
+.nav:hover{transform:none;background:#f1f5fc;color:#254b94}
+.nav.active{background:linear-gradient(90deg,#eaf1ff,#f1f7ff);color:#234fae;border-left:3px solid #315fc8}
+.main{min-width:0}
+.page{animation:pageIn .22s ease both}
+@keyframes pageIn{from{opacity:.55;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.heading{margin-bottom:22px;gap:16px}
+.heading h1{font-size:clamp(25px,2.5vw,34px);letter-spacing:-1px;color:#142844}
+.heading p{line-height:1.65}
+.panel,.statcard{border:1px solid var(--line);border-radius:17px;box-shadow:0 8px 26px rgba(24,49,82,.045);background:#fff}
+.panel{padding:20px}
+.panelhead{gap:12px;flex-wrap:wrap}
+.statcard{padding:19px;transition:transform .18s ease,box-shadow .18s ease}
+.statcard:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(24,49,82,.08)}
+.statline{color:#63738a;font-weight:700}
+.statnum{font-size:32px;letter-spacing:-1px;color:#19345b}
+.action-choice{border-radius:17px;transition:transform .18s,box-shadow .18s}
+.action-choice:hover{transform:translateY(-3px);box-shadow:0 15px 32px #17385f12}
+input,select,textarea{border-radius:10px}
+input:focus,select:focus,textarea:focus{outline:3px solid #2857c51a;border-color:#7190d5}
+table{border-collapse:separate;border-spacing:0}
+th{background:#f4f7fc;color:#61728a;letter-spacing:.65px}
+td,th{padding:11px 12px}
+tbody tr:hover td{background:#f8faff}
+button{transition:transform .15s ease,box-shadow .15s ease,filter .15s ease}
+button:focus-visible{outline:3px solid #79a1f4;outline-offset:2px}
+@media(max-width:1050px){.login-screen{grid-template-columns:1fr;max-width:100%;padding:18px}.login-copy{padding:28px}.loginbox{max-width:600px}.layout{padding:14px}.topbar{padding:0 15px}}
+@media(max-width:720px){.login-screen{grid-template-columns:1fr}.login-copy{display:block}.login-copy .brand{margin-bottom:25px}.login-copy h1{font-size:36px}.workflow-strip{gap:6px}.workflow-step{padding:10px 8px}.workflow-step small{font-size:10px}.workflow-arrow{font-size:15px}.login-trust{font-size:8px}}
+@media(max-width:600px){.login-screen{padding:10px;gap:12px}.login-copy{padding:21px;border-radius:20px}.login-copy h1{font-size:32px}.loginbox{border-radius:20px;padding:23px}.rolecards{gap:6px}.rolecard{font-size:12px}.topbar{height:auto;min-height:70px;gap:10px;flex-wrap:wrap;padding:12px}.topactions{flex-wrap:wrap;justify-content:flex-end}.layout{padding:9px;gap:10px}.panel{padding:14px}.cards{gap:10px}}
 </style></head>
 <body>
 <div id="loginScreen" class="login-screen">
  <div class="login-copy">
   <div class="brand"><div class="logo">P</div><div><strong>Pariksha Setu</strong><small>Manav Rachna Comprehensive Examination System</small></div></div>
-  <div class="eyebrow">One platform. Every examination workflow.</div>
-  <h1>Pariksha Setu<br><span>Manav Rachna Comprehensive Examination System</span></h1>
-  <p>A unified, transparent workspace for question-bank creation, outcome mapping, examination paper preparation and moderation—designed to support academic quality at every step.</p>
-  <div class="featurelist">
-   <div class="feature"><b>01 · Question Bank</b>Organise questions by syllabus, unit and course outcomes.</div>
-   <div class="feature"><b>02 · Outcome Mapping</b>Map COs, marks and Bloom’s Taxonomy levels.</div>
-   <div class="feature"><b>03 · Examination Quality</b>Review question metadata and identify possible duplication.</div>
-   <div class="feature"><b>04 · Controlled Workflow</b>Dedicated Faculty, COE and Moderator workspaces.</div>
+  <div class="eyebrow">MANAV RACHNA · DIGITAL EXAMINATION WORKFLOW</div>
+  <h1>From Question Bank<br><span>to Examination Paper.</span></h1>
+  <p class="login-intro">Pariksha Setu is Manav Rachna’s comprehensive examination workflow platform. Create and organise question banks, map Course Outcomes and Bloom’s Taxonomy, then assemble question papers from selected questions for review and approval.</p>
+  <div class="workflow-strip" aria-label="Examination workflow">
+   <div class="workflow-step"><span>01</span><b>Build Banks</b><small>Create or upload question banks</small></div>
+   <div class="workflow-arrow">→</div>
+   <div class="workflow-step"><span>02</span><b>Generate QPs</b><small>Select questions for a paper</small></div>
+   <div class="workflow-arrow">→</div>
+   <div class="workflow-step"><span>03</span><b>Review & Approve</b><small>Moderator and COE workflow</small></div>
   </div>
-  <div class="login-trust"><span>SECURE WORKFLOW</span><i></i><span>ACADEMIC INTEGRITY</span><i></i><span>QUALITY ASSURANCE</span></div>
+  <div class="login-trust"><span>OUTCOME MAPPING</span><i></i><span>STRUCTURED REVIEW</span><i></i><span>ACADEMIC QUALITY</span></div>
  </div>
  <div class="loginbox">
   <div class="login-brand-mark">PS</div>
