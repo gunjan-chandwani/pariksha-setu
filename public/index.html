@@ -253,6 +253,25 @@ aside .navcaption{padding:13px 13px 9px;color:#91a9ce;font-size:10px;letter-spac
 .moderator-edit-table .mod-question-input{min-width:260px;line-height:1.5}
 .moderator-edit-table .mod-short-input{min-width:125px}
 .moderator-edit-table .mod-marks-input{min-width:72px;width:72px}
+
+/* Keep Moderator Paper Review and comments inside a dedicated scroll area */
+#paperreview > .panel > #moderatorPaperQueue{
+  max-height:calc(100vh - 250px);
+  overflow-y:auto;
+  overflow-x:hidden;
+  overscroll-behavior:contain;
+  padding:4px 10px 10px 2px;
+  scrollbar-gutter:stable;
+  scrollbar-width:thin;
+  scrollbar-color:#b9c7dc #f2f5fa;
+}
+#paperreview > .panel > #moderatorPaperQueue::-webkit-scrollbar{width:9px}
+#paperreview > .panel > #moderatorPaperQueue::-webkit-scrollbar-track{background:#f2f5fa;border-radius:10px}
+#paperreview > .panel > #moderatorPaperQueue::-webkit-scrollbar-thumb{background:#b9c7dc;border-radius:10px;border:2px solid #f2f5fa}
+#paperreview > .panel > #moderatorPaperQueue::-webkit-scrollbar-thumb:hover{background:#91a5c2}
+@media(max-width:700px){
+  #paperreview > .panel > #moderatorPaperQueue{max-height:calc(100svh - 210px);padding-right:6px}
+}
 .moderator-edit-table .mod-action-input{min-width:150px}
 .moderator-edit-table .mini{font-size:10px;margin-top:5px;line-height:1.4}
 .moderator-review-card{overflow:hidden}
