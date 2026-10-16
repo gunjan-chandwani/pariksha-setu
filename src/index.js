@@ -58,7 +58,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === "/api/health") {
-      if (!configured(env)) return json({ ok: false, database: "not-configured", hint: "Set Worker secrets SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, and SESSION_SECRET." }, 503);
+      if (!configured(env)) { const missing = ["SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "SESSION_SECRET"].filter((key) => !env[key] || !String(env[key]).trim()); return json({ ok: false, database: "not-configured", missing, hint: "Add the missing names under this Worker’s Production runtime variables/secrets, then redeploy." }, 503); }
       try {
         const response = await supabaseRequest(env, "portal_state?select=id&id=eq.main");
         if (!response.ok) return json({ ok: false, database: "error", detail: (await response.text()).slice(0, 500) }, 503);
