@@ -21,3 +21,15 @@ create table if not exists public.portal_state_backups (
 );
 alter table public.portal_state_backups enable row level security;
 revoke all on table public.portal_state_backups from anon, authenticated;
+
+
+-- Production sign-in role mapping. Create users in Supabase Authentication first,
+-- then insert their auth.users UUID and approved portal role here.
+create table if not exists public.portal_user_roles (
+  user_id uuid primary key references auth.users(id) on delete cascade,
+  role text not null check (role in ('Faculty', 'COE', 'Moderator')),
+  active boolean not null default true,
+  created_at timestamptz not null default now()
+);
+alter table public.portal_user_roles enable row level security;
+revoke all on table public.portal_user_roles from anon, authenticated;
