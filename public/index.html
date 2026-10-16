@@ -261,7 +261,7 @@ aside .navcaption{padding:13px 13px 9px;color:#91a9ce;font-size:10px;letter-spac
 :root{--navy:#12233f;--navy2:#1b3760;--blue:#2857c5;--cyan:#31b8c5;--bg:#f3f6fb;--ink:#172a45;--muted:#718096;--line:#e3eaf3;--shadow:0 14px 38px rgba(20,39,70,.08)}
 body{background:linear-gradient(135deg,#f4f7fc 0%,#edf3fa 100%);color:var(--ink)}
 .login-screen{min-height:100vh;padding:clamp(16px,3vw,46px);gap:clamp(18px,2.5vw,36px);grid-template-columns:minmax(0,1.12fr) minmax(340px,.88fr);background:radial-gradient(circle at 85% 12%,#e2f3f5 0,transparent 34%),linear-gradient(135deg,#f7f9fd,#eaf0f8);color:#fff}
-.login-copy{position:relative;isolation:isolate;overflow:hidden;max-width:none;width:100%;padding:clamp(25px,4vw,52px);border-radius:28px;border:1px solid rgba(255,255,255,.25);background:linear-gradient(115deg,rgba(10,27,55,.92) 0%,rgba(16,43,79,.84) 54%,rgba(16,52,83,.72) 100%),url('https://manavrachna.edu.in/assets/campus/mru/images/mru-study.webp') center/cover no-repeat;box-shadow:0 24px 65px rgba(14,34,66,.2)}
+.login-copy{position:relative;isolation:isolate;overflow:hidden;max-width:none;width:100%;padding:clamp(25px,4vw,52px);border-radius:28px;border:1px solid rgba(255,255,255,.25);background:linear-gradient(145deg,#fffaf4 0%,#f5ece4 100%);box-shadow:0 24px 65px rgba(14,34,66,.2)}
 .login-copy .brand{margin-bottom:clamp(30px,5vh,58px)}
 .login-copy .brand .logo{background:linear-gradient(135deg,#fff,#a8e9e9);color:#173459;border-radius:14px;box-shadow:0 8px 24px #0002}
 .login-copy .brand strong{font-size:20px;letter-spacing:-.4px}
@@ -373,6 +373,21 @@ tbody tr:hover td{background:#fcf5ef}
 input:focus,select:focus,textarea:focus{outline:3px solid #9b4d551a;border-color:#b77970}
 button:focus-visible{outline:3px solid #c18462;outline-offset:2px}
 @media(max-width:1050px){.login-screen{background:#f7f3ed}}
+
+/* Campus image as a framed visual element, not a background */
+.login-copy{color:#342738!important;background:linear-gradient(145deg,#fffaf4 0%,#f5ece4 100%)!important;border:1px solid #eadbd0!important;box-shadow:0 22px 58px rgba(72,43,48,.09)!important}
+.login-copy .brand strong{color:#503047!important}.login-copy .brand small{color:#796b75!important}
+.login-copy .eyebrow{color:#a6533e!important}.login-copy h1{color:#342338!important}.login-copy h1 span{color:#a6533e!important}
+.login-copy .login-intro{color:#6d6470!important}
+.login-copy .workflow-step{background:#fffdfa!important;border:1px solid #eadbd0!important;backdrop-filter:none!important;box-shadow:0 5px 18px rgba(80,48,71,.045)}
+.login-copy .workflow-step>span{background:#f0ddd2!important;color:#633746!important}.login-copy .workflow-step b{color:#503047!important}.login-copy .workflow-step small{color:#786b75!important}.login-copy .workflow-arrow{color:#a6533e!important}.login-copy .login-trust{color:#7a6d77!important}.login-copy .login-trust i{background:#a6533e!important}
+.campus-visual{position:relative;margin:24px 0 4px;max-width:680px;border-radius:17px;overflow:hidden;background:#e9ddd4;border:1px solid #e7d7cd;box-shadow:0 12px 26px rgba(64,42,56,.09)}
+.campus-visual img{display:block;width:100%;height:clamp(135px,17vw,205px);object-fit:cover;object-position:center 48%}
+.campus-visual figcaption{display:flex;align-items:center;gap:10px;padding:11px 14px;background:#fffaf4}
+.campus-dot{width:9px;height:9px;border-radius:50%;background:#71866d;box-shadow:0 0 0 4px #71866d20;flex:none}
+.campus-visual figcaption b{display:block;color:#503047;font-size:12px}.campus-visual figcaption small{display:block;color:#80717b;font-size:10px;margin-top:2px}
+.campus-visual-mark{margin-left:auto;font-size:10px;font-weight:850;letter-spacing:1.5px;color:#a6533e;border:1px solid #e8d8d0;border-radius:8px;padding:6px 8px}
+@media(max-width:850px){.campus-visual img{height:170px}}@media(max-width:520px){.campus-visual img{height:145px}.campus-visual figcaption{padding:10px}.campus-visual-mark{display:none}}
 </style></head>
 <body>
 <div id="loginScreen" class="login-screen">
@@ -381,6 +396,7 @@ button:focus-visible{outline:3px solid #c18462;outline-offset:2px}
   <div class="eyebrow">MANAV RACHNA · DIGITAL EXAMINATION WORKFLOW</div>
   <h1>From Question Bank<br><span>to Examination Paper.</span></h1>
   <p class="login-intro">Pariksha Setu is Manav Rachna’s comprehensive examination workflow platform. Create and organise question banks, map Course Outcomes and Bloom’s Taxonomy, then assemble question papers from selected questions for review and approval.</p>
+  <figure class="campus-visual"><img src="https://manavrachna.edu.in/assets/campus/mru/images/mru-study.webp" alt="Manav Rachna University campus" loading="eager"><figcaption><span class="campus-dot"></span><span><b>Manav Rachna University</b><small>Academic excellence, thoughtfully connected</small></span><span class="campus-visual-mark">MRU</span></figcaption></figure>
   <div class="workflow-strip" aria-label="Examination workflow">
    <div class="workflow-step"><span>01</span><b>Build Banks</b><small>Create or upload question banks</small></div>
    <div class="workflow-arrow">→</div>
