@@ -73,17 +73,34 @@ export default {
       try { body = await request.json(); } catch { return json({ error: "Invalid request body" }, 400); }
       const email = String(body.email || "").toLowerCase().trim();
       const password = String(body.password || "");
-      const role = String(body.role || "");
-      const users = {
-        "faculty@mru.edu.in": "Faculty",
-        "coe@mru.edu.in": "COE",
-        "moderator@mru.edu.in": "Moderator"
-      };
-      if (!users[email] || users[email] !== role || password !== (env.DEMO_PASSWORD || "demo123")) {
-        return json({ error: "Invalid demo credentials or role" }, 401);
+      const requestedRole = String(body.role || "");
+      if (!email || !password || !["Faculty", "COE", "Moderator"].includes(requestedRole)) {
+        return json({ error: "Enter your institutional email, password, and assigned portal role." }, 400);
       }
-      if (!env.SESSION_SECRET) return json({ error: "Server session secret is not configured" }, 503);
-      const user = { email, role };
+      if (!configured(env)) return json({ error: "Authentication service is not configured. Contact the portal administrator." }, 503);
+      if (!env.SESSION_SECRET) return json({ error: "Server session secret is not configured." }, 503);
+
+      // Authenticate the actual account with Supabase Auth; never accept demo passwords.
+      const authResponse = await fetch(env.SUPABASE_URL.replace(/\\/+$/, "") + "/auth/v1/token?grant_type=password", {
+        method: "POST",
+        headers: { apikey: env.SUPABASE_SERVICE_ROLE_KEY, "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+      if (!authResponse.ok) return json({ error: "Sign-in failed. Check your email and password, or contact the portal administrator." }, 401);
+      let auth;
+      try { auth = await authResponse.json(); } catch { return json({ error: "Authentication service returned an invalid response." }, 502); }
+      const authUserId = auth?.user?.id;
+      if (!authUserId) return json({ error: "Your account could not be verified." }, 401);
+
+      const roleResponse = await supabaseRequest(env, "portal_user_roles?select=role,active&user_id=eq." + encodeURIComponent(authUserId) + "&active=eq.true");
+      if (!roleResponse.ok) return json({ error: "Could not verify your portal permissions. Contact the portal administrator." }, 503);
+      let roleRows;
+      try { roleRows = await roleResponse.json(); } catch { return json({ error: "Could not verify your portal permissions." }, 503); }
+      const assignedRole = roleRows?.[0]?.role;
+      if (!assignedRole || assignedRole !== requestedRole) {
+        return json({ error: "This account is not assigned to the selected role. Contact the portal administrator." }, 403);
+      }
+      const user = { id: authUserId, email: String(auth.user.email || email), role: assignedRole };
       return json({ token: await makeToken(user, env), user });
     }
 
