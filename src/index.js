@@ -42,7 +42,7 @@ function configured(env) {
 }
 
 async function supabaseRequest(env, path, init = {}) {
-  const base = env.SUPABASE_URL.replace(/\/+$/, "");
+      const authResponse = await fetch(env.SUPABASE_URL.replace(/\/+$/, "") + "/auth/v1/token?grant_type=password", {
   return fetch(base + "/rest/v1/" + path, {
     ...init,
     headers: {
