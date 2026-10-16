@@ -3,6 +3,7 @@
   "name": "pariksha-setu",
   "main": "src/index.js",
   "compatibility_date": "2026-10-16",
+  "keep_vars": true,
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
