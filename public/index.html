@@ -388,6 +388,35 @@ button:focus-visible{outline:3px solid #c18462;outline-offset:2px}
 .campus-visual figcaption b{display:block;color:#503047;font-size:12px}.campus-visual figcaption small{display:block;color:#80717b;font-size:10px;margin-top:2px}
 .campus-visual-mark{margin-left:auto;font-size:10px;font-weight:850;letter-spacing:1.5px;color:#a6533e;border:1px solid #e8d8d0;border-radius:8px;padding:6px 8px}
 @media(max-width:850px){.campus-visual img{height:170px}}@media(max-width:520px){.campus-visual img{height:145px}.campus-visual figcaption{padding:10px}.campus-visual-mark{display:none}}
+
+/* Compact login: fit the full sign-in experience into one desktop viewport */
+@media(min-width:721px){
+ .login-screen{min-height:100svh;padding:18px clamp(18px,2.5vw,38px)!important;gap:clamp(18px,2vw,30px)!important;grid-template-columns:minmax(0,1.08fr) minmax(330px,.82fr)!important;align-items:center!important}
+ .login-copy{display:block!important;padding:clamp(18px,2vw,28px)!important;border-radius:22px!important}
+ .login-copy .brand{margin-bottom:15px!important}
+ .login-copy h1{font-size:clamp(29px,3.1vw,43px)!important;line-height:1.04!important;margin:10px 0!important;letter-spacing:-1.2px!important}
+ .login-copy .login-intro{font-size:13px!important;line-height:1.5!important;margin:8px 0!important;max-width:620px!important}
+ .campus-visual{margin:12px 0 0!important;max-width:100%!important;border-radius:12px!important}
+ .campus-visual img{height:clamp(78px,11vh,112px)!important;object-position:center 46%!important}
+ .campus-visual figcaption{padding:7px 11px!important}
+ .workflow-strip{margin-top:12px!important;gap:6px!important}
+ .workflow-step{padding:8px!important;gap:3px!important;border-radius:10px!important}
+ .workflow-step>span{width:23px!important;height:23px!important;border-radius:7px!important}
+ .workflow-step b{font-size:11px!important}.workflow-step small{font-size:9px!important;line-height:1.3!important}
+ .workflow-arrow{font-size:15px!important}
+ .login-trust{display:none!important}
+ .loginbox{padding:clamp(20px,2.2vw,30px)!important;border-radius:19px!important;max-width:460px!important}
+ .loginbox h2{font-size:23px!important}.loginbox>p{margin:4px 0 14px!important}
+ .rolecards{margin-bottom:13px!important}.rolecard{padding:9px 6px!important}
+ .loginbox .field{margin:9px 0!important}.loginbox button.primary{padding:11px!important}
+ .demohelp{margin-top:12px!important;padding:10px!important;line-height:1.45!important}
+ .login-foot{margin-top:10px!important}
+}
+@media(max-width:720px){
+ .login-screen{min-height:100svh!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:12px!important}
+ .login-copy{display:none!important}
+ .loginbox{margin:0 auto!important;padding:22px!important}
+}
 </style></head>
 <body>
 <div id="loginScreen" class="login-screen">
