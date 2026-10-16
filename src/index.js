@@ -42,7 +42,7 @@ function configured(env) {
 }
 
 async function supabaseRequest(env, path, init = {}) {
-      const authResponse = await fetch(env.SUPABASE_URL.replace(/\/+$/, "") + "/auth/v1/token?grant_type=password", {
+  const base = env.SUPABASE_URL.replace(/\/+$/, "");
   return fetch(base + "/rest/v1/" + path, {
     ...init,
     headers: {
@@ -78,10 +78,9 @@ export default {
         return json({ error: "Enter your institutional email, password, and assigned portal role." }, 400);
       }
       if (!configured(env)) return json({ error: "Authentication service is not configured. Contact the portal administrator." }, 503);
-      if (!env.SESSION_SECRET) return json({ error: "Server session secret is not configured." }, 503);
 
       // Authenticate the actual account with Supabase Auth; never accept demo passwords.
-      const authResponse = await fetch(env.SUPABASE_URL.replace(/\\/+$/, "") + "/auth/v1/token?grant_type=password", {
+      const authResponse = await fetch(env.SUPABASE_URL.replace(/\/+$/, "") + "/auth/v1/token?grant_type=password", {
         method: "POST",
         headers: { apikey: env.SUPABASE_SERVICE_ROLE_KEY, "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
@@ -111,10 +110,10 @@ export default {
 
       if (request.method === "GET") {
         const response = await supabaseRequest(env, "portal_state?select=data,updated_at&id=eq.main");
-        const text = await response.text();
-        if (!response.ok) return json({ error: text.slice(0, 500) }, 500);
+        const responseText = await response.text();
+        if (!response.ok) return json({ error: responseText.slice(0, 500) }, 500);
         let rows;
-        try { rows = JSON.parse(text); } catch { return json({ error: "Unexpected database response" }, 500); }
+        try { rows = JSON.parse(responseText); } catch { return json({ error: "Unexpected database response" }, 500); }
         return json({ data: rows[0]?.data || null, updated_at: rows[0]?.updated_at || null });
       }
 
