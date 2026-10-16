@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: pariksha-setu
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: DEMO_PASSWORD
+        sync: false
