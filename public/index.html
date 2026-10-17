@@ -687,6 +687,17 @@ tbody tr:hover td{background:#fcf6f2}
 .campus-visual img{object-fit:contain;object-position:center center;width:100%;height:100%;padding:0;filter:saturate(.82) contrast(1.02);opacity:1}
 @media(max-width:760px){.campus-visual{height:150px}.campus-visual img{object-fit:contain;object-position:center}}
 
+
+/* Final login alignment: heading and institution label share one left edge;
+   campus image fills its frame as a cropped banner. */
+.loginbox>.eyebrow{display:block!important;width:100%;text-align:left!important;margin:0!important;padding:0!important;line-height:1.4}
+.loginbox>.eyebrow:before{display:none!important;content:none!important}
+.loginbox h2{display:block;width:100%;text-align:left!important;margin:9px 0 0!important}
+.loginbox>p{text-align:left!important}
+.campus-visual{height:clamp(155px,19vw,220px);overflow:hidden}
+.campus-visual img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 38%;padding:0;opacity:1}
+@media(max-width:760px){.campus-visual{height:155px}.campus-visual img{object-fit:cover;object-position:center 38%}}
+
 </style></head>
 <body>
 <div id="loginScreen" class="login-screen">
