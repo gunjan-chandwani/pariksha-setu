@@ -948,64 +948,49 @@ function currentBuilderCourse(){return document.getElementById('bCourse')?.value
 function topicSlug(section,name){return (String(section||'')+'-'+String(name||'')).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,100)}
 function cleanTopic(s){return String(s||'').replace(/^[\s•●▪◦\-*]+/,'').replace(/^\d+[\).]\s*/,'').replace(/\s+/g,' ').trim().replace(/[;,.]+$/,'')}
 function parseSyllabusTopicText(text){
+  // This syllabus format requires only theory topics under Section A, B, C and D.
+  // Ignore course metadata, COs, lab syllabus, books, mappings and online resources.
   const source=String(text||'').replace(/\r/g,'').replace(/[\u00a0\u200b]/g,' ').replace(/[‐‑‒–—]/g,'-');
-  const rawLines=source.split(/\n+/).map(x=>x.replace(/\s+/g,' ').trim()).filter(Boolean),out=[];
-  let section='General Topics',hasSections=false;
-  const seen=new Set();
-  function add(name,sec=section){
-    name=String(name||'').replace(/^[\s•●▪◦◆\-*]+/,'').replace(/^\(?\d+(?:\.\d+)*[.)]?\s+/,'').replace(/\s+/g,' ').replace(/[;,.|]+$/,'').trim();
-    if(name.length<3||name.length>220||/^(page\s*)?\d+$/i.test(name))return;
-    if(/^(contents|table of contents|syllabus|course outline|course objectives|course outcomes|learning outcomes|references|text books?|recommended books?|assessment|evaluation scheme|credits|contact hours?|lecture|tutorial|practical|theory|unit|module|chapter|section)$/i.test(name))return;
-    if(/^(manav rachna|faculty of|school of|department of)\b/i.test(name)&&name.length<90)return;
-    const key=sec.toLowerCase()+'|'+name.toLowerCase();
-    if(seen.has(key))return;seen.add(key);
-    out.push({id:topicSlug(sec,name),section:sec,name,active:true,midterm:true});
-  }
-  function splitTopics(s,sec=section){
-    let cleaned=String(s||'').replace(/\s+/g,' ').trim();
-    cleaned=cleaned.replace(/^(topics?\s*(covered|include|are|:)?\s*[:\-]?\s*)/i,'');
-    const parts=cleaned.split(/\s*(?:;|\||•|●|▪|◦)\s*/).map(x=>x.trim()).filter(Boolean);
-    if(parts.length>1){parts.forEach(p=>add(p,sec));return}
-    const numbered=cleaned.split(/\s+(?=(?:\d{1,2}[.)]|[a-z][.)])\s+)/i).filter(Boolean);
-    if(numbered.length>1){numbered.forEach(p=>add(p,sec));return}
-    if(cleaned.length<=220)add(cleaned,sec);
-    else {
-      const sentences=cleaned.split(/(?<=[.!?])\s+(?=[A-Z0-9])/).map(x=>x.trim()).filter(Boolean);
-      if(sentences.length>1)sentences.forEach(p=>add(p,sec));
-      else cleaned.match(/[^,]{3,100}(?:,|$)/g)?.forEach(p=>add(p.replace(/,$/,''),sec));
-    }
-  }
-  for(let i=0;i<rawLines.length;i++){
-    let raw=rawLines[i].replace(/^[\s•●▪◦◆]+/,'').trim();
-    if(!raw)continue;
-    const m=raw.match(/^(?:unit|module|chapter|section)\s*(?:no\.?\s*)?[-:]?\s*([ivxlcdm]+|\d+[a-z]?|[a-z])\s*(?:[:.\-]\s*)?(.*)$/i)
-      ||raw.match(/^(?:unit|module|chapter|section)\s*[-:]\s*([ivxlcdm]+|\d+[a-z]?|[a-z])\s*(.*)$/i);
-    if(m){
-      section=(raw.match(/^unit/i)?'Unit':raw.match(/^module/i)?'Module':raw.match(/^chapter/i)?'Chapter':'Section')+' '+String(m[1]||'').toUpperCase();
-      hasSections=true;
-      let tail=(m[2]||'').trim();
-      if(tail)splitTopics(tail,section);
-      continue;
-    }
-    const unitHeading=raw.match(/^(unit|module|chapter|section)\s*[- ]?\s*([ivxlcdm]+|\d+[a-z]?)\s*$/i);
-    if(unitHeading){section=unitHeading[1][0].toUpperCase()+unitHeading[1].slice(1).toLowerCase()+' '+unitHeading[2].toUpperCase();hasSections=true;continue}
-    if(/^(course content|detailed syllabus|syllabus contents|course outline|theory syllabus|contents of course|unit wise syllabus)\s*:?\s*$/i.test(raw))continue;
-    if(/^(references|text books?|recommended books?|course outcomes?|learning outcomes?|credits|contact hours?|evaluation scheme|assessment pattern|prerequisites?)\b/i.test(raw))continue;
-    if(/^(lecture|tutorial|practical|theory)\s*hours?\b/i.test(raw))continue;
-    if(/^(\d+(?:\.\d+)*[.)]?\s+|[•●▪◦◆*\-]\s*)/.test(raw))splitTopics(raw,section);
-    else if(raw.length<=180 && !/^[A-Z\s&/]{35,}$/.test(raw))splitTopics(raw,section);
-    else if(raw.length>180)splitTopics(raw,section);
-  }
-  if(!out.length){
-    const flattened=source.replace(/\n+/g,' ').replace(/\s+/g,' ').trim();
-    const matches=[...flattened.matchAll(/(?:unit|module|chapter|section)\s*[-:]?\s*(?:[ivxlcdm]+|\d+[a-z]?)\s*[:.\-]?/ig)];
-    if(matches.length){
-      for(let i=0;i<matches.length;i++){
-        const m=matches[i],next=matches[i+1],head=m[0],secMatch=head.match(/^(unit|module|chapter|section)/i);
-        section=(secMatch?.[1]||'Unit')[0].toUpperCase()+(secMatch?.[1]||'Unit').slice(1).toLowerCase()+' '+(head.match(/(ivxlcdm+|\d+[a-z]?)/i)?.[1]||String(i+1)).toUpperCase();
-        const chunk=flattened.slice(m.index+m[0].length,next?next.index:flattened.length);
-        chunk.split(/\s*[;•|]\s*|(?<=[.!?])\s+/).forEach(p=>add(p,section));
+  const headingRe=/section\s*[- ]\s*([a-d])\s*[:.\-]?\s*([^\n\r]*)/ig;
+  const headings=[...source.matchAll(headingRe)];
+  const out=[],seen=new Set();
+  if(!headings.length)return out;
+  const labels={a:'Section A',b:'Section B',c:'Section C',d:'Section D'};
+  for(let i=0;i<headings.length;i++){
+    const h=headings[i],letter=String(h[1]||'').toLowerCase();
+    if(!['a','b','c','d'].includes(letter))continue;
+    const next=headings.slice(i+1).find(n=>['a','b','c','d'].includes(String(n[1]||'').toLowerCase()));
+    let block=source.slice(h.index+h[0].length,next?next.index:source.length);
+    // Section titles are labels, not topics. Content may begin on the same line as the heading.
+    block=(h[2]||'').trim()+'\n'+block;
+    block=block.replace(/^\s*(?:introduction|gui development|database connectivity and networking|java servlets and jsp)\s*/i,'');
+    // Stop if a malformed extraction runs into the lab/course appendices.
+    block=block.split(/\n\s*(?:list of experiments|textbooks?|reference books?|online resources|co-po mapping|mappings of cos|course outcomes?)\s*:?\s*/i)[0];
+    let section=labels[letter];
+    // Remove repeated section headings/titles inside the captured block.
+    block=block.replace(/section\s*[- ]\s*[a-d]\s*[:.\-]?\s*[^\n\r]*/ig,' ');
+    block=block.replace(/\s+/g,' ').trim();
+    if(!block)continue;
+    // Break the section content into reviewable topic entries while retaining meaningful phrases.
+    let parts=block.split(/\s*(?:;|\n|•|●|▪|◦)\s*/).flatMap(part=>{
+      part=part.trim();
+      if(!part)return [];
+      // Treat labelled subareas such as "Networking:" as separate topic groups.
+      const colon=part.match(/^([^:]{2,55}):\s*(.+)$/);
+      if(colon && /^(networking|java database connectivity|java servlets|java server pages|frameworks in java|swing components|collection framework)$/i.test(colon[1].trim())){
+        return [colon[1].trim(), ...colon[2].split(/\s*,\s*/)];
       }
+      return part.split(/(?<=[.!?])\s+|(?<!\b(?:e\.g|i\.e))\s*,\s*/i);
+    });
+    for(let part of parts){
+      part=part.replace(/^[\s•●▪◦◆\-*]+/,'').replace(/^\(?\d+(?:\.\d+)*[.)]?\s+/,'').replace(/\s+/g,' ').replace(/[;,.|]+$/,'').trim();
+      if(!part || part.length<3 || part.length>220)continue;
+      if(/^(section\s*[- ]?[a-d]|introduction|gui development|database connectivity and networking|java servlets and jsp)$/i.test(part))continue;
+      if(/^(course objective|course outcomes?|textbooks?|reference books?|online resources|list of experiments|co-po mapping|references?)\b/i.test(part))continue;
+      const key=section.toLowerCase()+'|'+part.toLowerCase();
+      if(seen.has(key))continue;
+      seen.add(key);
+      out.push({id:topicSlug(section,part),section,name:part,active:true,midterm:true});
     }
   }
   return out.slice(0,250);
