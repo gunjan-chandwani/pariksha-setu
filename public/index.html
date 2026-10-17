@@ -948,10 +948,67 @@ function currentBuilderCourse(){return document.getElementById('bCourse')?.value
 function topicSlug(section,name){return (String(section||'')+'-'+String(name||'')).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,100)}
 function cleanTopic(s){return String(s||'').replace(/^[\s•●▪◦\-*]+/,'').replace(/^\d+[\).]\s*/,'').replace(/\s+/g,' ').trim().replace(/[;,.]+$/,'')}
 function parseSyllabusTopicText(text){
- const lines=String(text||'').replace(/\r/g,'').split(/\n+/).map(cleanTopic).filter(Boolean),out=[];let section='General Topics';
- function add(name){name=cleanTopic(name);if(!name||name.length<3||/^(page\s*)?\d+$/i.test(name))return;if(!out.some(t=>t.section.toLowerCase()===section.toLowerCase()&&t.name.toLowerCase()===name.toLowerCase()))out.push({id:topicSlug(section,name),section,name,active:true,midterm:true})}
- lines.forEach(raw=>{let m=raw.match(/^(unit|module|section|chapter)\s*([ivxlcdm]+|\d+[a-z]?)?\s*[:.\-–—]?\s*(.*)$/i);if(m){section=[m[1][0].toUpperCase()+m[1].slice(1).toLowerCase(),m[2]||''].filter(Boolean).join(' ');let tail=(m[3]||'').trim();if(tail)tail.split(/\s*[;|]\s*|\s*,\s*/).forEach(add);return}if(/^(references|text books?|course outcomes?|credits|contact hours?)\b/i.test(raw))return;let parts=raw.split(/\s*[;•]\s*|\s*,\s*/);if(parts.length>1)parts.forEach(add);else if(raw.length<240)add(raw);else raw.split(/(?<=[.!?])\s+/).forEach(add)});
- return out.slice(0,250)
+  const source=String(text||'').replace(/\r/g,'').replace(/[\u00a0\u200b]/g,' ').replace(/[‐‑‒–—]/g,'-');
+  const rawLines=source.split(/\n+/).map(x=>x.replace(/\s+/g,' ').trim()).filter(Boolean),out=[];
+  let section='General Topics',hasSections=false;
+  const seen=new Set();
+  function add(name,sec=section){
+    name=String(name||'').replace(/^[\s•●▪◦◆\-*]+/,'').replace(/^\(?\d+(?:\.\d+)*[.)]?\s+/,'').replace(/\s+/g,' ').replace(/[;,.|]+$/,'').trim();
+    if(name.length<3||name.length>220||/^(page\s*)?\d+$/i.test(name))return;
+    if(/^(contents|table of contents|syllabus|course outline|course objectives|course outcomes|learning outcomes|references|text books?|recommended books?|assessment|evaluation scheme|credits|contact hours?|lecture|tutorial|practical|theory|unit|module|chapter|section)$/i.test(name))return;
+    if(/^(manav rachna|faculty of|school of|department of)\b/i.test(name)&&name.length<90)return;
+    const key=sec.toLowerCase()+'|'+name.toLowerCase();
+    if(seen.has(key))return;seen.add(key);
+    out.push({id:topicSlug(sec,name),section:sec,name,active:true,midterm:true});
+  }
+  function splitTopics(s,sec=section){
+    let cleaned=String(s||'').replace(/\s+/g,' ').trim();
+    cleaned=cleaned.replace(/^(topics?\s*(covered|include|are|:)?\s*[:\-]?\s*)/i,'');
+    const parts=cleaned.split(/\s*(?:;|\||•|●|▪|◦)\s*/).map(x=>x.trim()).filter(Boolean);
+    if(parts.length>1){parts.forEach(p=>add(p,sec));return}
+    const numbered=cleaned.split(/\s+(?=(?:\d{1,2}[.)]|[a-z][.)])\s+)/i).filter(Boolean);
+    if(numbered.length>1){numbered.forEach(p=>add(p,sec));return}
+    if(cleaned.length<=220)add(cleaned,sec);
+    else {
+      const sentences=cleaned.split(/(?<=[.!?])\s+(?=[A-Z0-9])/).map(x=>x.trim()).filter(Boolean);
+      if(sentences.length>1)sentences.forEach(p=>add(p,sec));
+      else cleaned.match(/[^,]{3,100}(?:,|$)/g)?.forEach(p=>add(p.replace(/,$/,''),sec));
+    }
+  }
+  for(let i=0;i<rawLines.length;i++){
+    let raw=rawLines[i].replace(/^[\s•●▪◦◆]+/,'').trim();
+    if(!raw)continue;
+    const m=raw.match(/^(?:unit|module|chapter|section)\s*(?:no\.?\s*)?[-:]?\s*([ivxlcdm]+|\d+[a-z]?|[a-z])\s*(?:[:.\-]\s*)?(.*)$/i)
+      ||raw.match(/^(?:unit|module|chapter|section)\s*[-:]\s*([ivxlcdm]+|\d+[a-z]?|[a-z])\s*(.*)$/i);
+    if(m){
+      section=(raw.match(/^unit/i)?'Unit':raw.match(/^module/i)?'Module':raw.match(/^chapter/i)?'Chapter':'Section')+' '+String(m[1]||'').toUpperCase();
+      hasSections=true;
+      let tail=(m[2]||'').trim();
+      if(tail)splitTopics(tail,section);
+      continue;
+    }
+    const unitHeading=raw.match(/^(unit|module|chapter|section)\s*[- ]?\s*([ivxlcdm]+|\d+[a-z]?)\s*$/i);
+    if(unitHeading){section=unitHeading[1][0].toUpperCase()+unitHeading[1].slice(1).toLowerCase()+' '+unitHeading[2].toUpperCase();hasSections=true;continue}
+    if(/^(course content|detailed syllabus|syllabus contents|course outline|theory syllabus|contents of course|unit wise syllabus)\s*:?s*$/i.test(raw))continue;
+    if(/^(references|text books?|recommended books?|course outcomes?|learning outcomes?|credits|contact hours?|evaluation scheme|assessment pattern|prerequisites?)\b/i.test(raw))continue;
+    if(/^(lecture|tutorial|practical|theory)\s*hours?\b/i.test(raw))continue;
+    if(/^(\d+(?:\.\d+)*[.)]?\s+|[•●▪◦◆*\-]\s*)/.test(raw))splitTopics(raw,section);
+    else if(raw.length<=180 && !/^[A-Z\s&/]{35,}$/.test(raw))splitTopics(raw,section);
+    else if(raw.length>180)splitTopics(raw,section);
+  }
+  if(!out.length){
+    const flattened=source.replace(/\n+/g,' ').replace(/\s+/g,' ').trim();
+    const matches=[...flattened.matchAll(/(?:unit|module|chapter|section)\s*[-:]?\s*(?:[ivxlcdm]+|\d+[a-z]?)\s*[:.\-]?/ig)];
+    if(matches.length){
+      for(let i=0;i<matches.length;i++){
+        const m=matches[i],next=matches[i+1],head=m[0],secMatch=head.match(/^(unit|module|chapter|section)/i);
+        section=(secMatch?.[1]||'Unit')[0].toUpperCase()+(secMatch?.[1]||'Unit').slice(1).toLowerCase()+' '+(head.match(/(ivxlcdm+|\d+[a-z]?)/i)?.[1]||String(i+1)).toUpperCase();
+        const chunk=flattened.slice(m.index+m[0].length,next?next.index:flattened.length);
+        chunk.split(/\s*[;•|]\s*|(?<=[.!?])\s+/).forEach(p=>add(p,section));
+      }
+    }
+  }
+  return out.slice(0,250);
 }
 function loadSyllabusReader(src,key){if(window[key])return Promise.resolve();return new Promise((resolve,reject)=>{let s=document.querySelector('script[data-syllabus-lib="'+key+'"]');if(s){s.addEventListener('load',resolve,{once:true});s.addEventListener('error',reject,{once:true});return} s=document.createElement('script');s.src=src;s.async=true;s.dataset.syllabusLib=key;s.onload=resolve;s.onerror=()=>reject(new Error('Document reader could not load. Check internet access or paste syllabus text instead.'));document.head.appendChild(s)})}
 async function readSyllabusFile(file){let ext=file.name.split('.').pop().toLowerCase();if(ext==='txt')return file.text();if(ext==='pdf'){await loadSyllabusReader('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js','pdfjsLib');pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';let pdf=await pdfjsLib.getDocument({data:await file.arrayBuffer()}).promise,parts=[];for(let n=1;n<=pdf.numPages;n++){let p=await pdf.getPage(n),t=await p.getTextContent(),lines=[],lastY=null,line='';t.items.forEach(x=>{let y=x.transform?x.transform[5]:null;if(lastY!==null&&y!==null&&Math.abs(y-lastY)>3){if(line.trim())lines.push(line.trim());line=''}line+=x.str+' ';if(y!==null)lastY=y});if(line.trim())lines.push(line.trim());parts.push(lines.join('\n'))}return parts.join('\n')}if(ext==='docx'){await loadSyllabusReader('https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js','mammoth');let x=await mammoth.extractRawText({arrayBuffer:await file.arrayBuffer()});return x.value||''}throw new Error('Upload PDF, DOCX or TXT. Convert legacy .doc files to .docx first.')}
