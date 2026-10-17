@@ -678,6 +678,15 @@ tbody tr:hover td{background:#fcf6f2}
 }
 @media(prefers-reduced-motion:reduce){.loginbox button.primary,.rolecard{transition:none}}
 
+
+/* Fine alignment and full-subject campus photo */
+.loginbox>.eyebrow{padding-left:0;margin-left:0;gap:0}
+.loginbox>.eyebrow:before{content:none!important;display:none!important}
+.loginbox h2{margin-left:0;text-align:left}
+.campus-visual{height:clamp(155px,19vw,220px);background:linear-gradient(135deg,#57414d,#342a3b)}
+.campus-visual img{object-fit:contain;object-position:center center;width:100%;height:100%;padding:0;filter:saturate(.82) contrast(1.02);opacity:1}
+@media(max-width:760px){.campus-visual{height:150px}.campus-visual img{object-fit:contain;object-position:center}}
+
 </style></head>
 <body>
 <div id="loginScreen" class="login-screen">
