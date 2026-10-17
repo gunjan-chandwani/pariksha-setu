@@ -591,6 +591,93 @@ tbody tr:hover td{background:#fcf6f2}
 .empty{padding:28px 18px;border:1px dashed #ddcccf;border-radius:13px;background:#fcf7f4;color:#857781;text-align:center}
 .app[data-role="COE"] .workflow-overview,.app[data-role="COE"] .workflow-track,.app[data-role="COE"] .workflow-heading,.app[data-role="COE"] .workflow-step,.app[data-role="COE"] .workflow-connector,.app[data-role="COE"] .workflow-note,.app[data-role="Moderator"] .workflow-overview,.app[data-role="Moderator"] .workflow-track,.app[data-role="Moderator"] .workflow-heading,.app[data-role="Moderator"] .workflow-step,.app[data-role="Moderator"] .workflow-connector,.app[data-role="Moderator"] .workflow-note{display:none!important}
 @media(max-width:760px){.panel{padding:14px;border-radius:14px}.heading{align-items:flex-start;flex-direction:column}.statcard{padding:14px}.rowactions{width:100%}.rowactions input{max-width:100%!important;min-width:0;flex:1}}
+
+/* Login page redesign — editorial campus look */
+.login-screen{
+ position:relative;isolation:isolate;overflow:hidden;min-height:100vh;
+ grid-template-columns:minmax(0,1.08fr) minmax(390px,.82fr);
+ gap:clamp(28px,5vw,76px);padding:clamp(24px,5vw,76px);
+ background:
+  radial-gradient(ellipse at 15% 8%,rgba(202,151,119,.25),transparent 32%),
+  radial-gradient(ellipse at 85% 90%,rgba(119,147,123,.19),transparent 34%),
+  linear-gradient(128deg,#211d2c 0%,#382b3d 48%,#49353f 100%);
+}
+.login-screen:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.16;
+ background-image:radial-gradient(rgba(255,244,231,.7) .65px,transparent .65px);background-size:19px 19px;
+ mask-image:linear-gradient(90deg,#000,transparent 75%)}
+.login-screen:after{content:"";position:absolute;z-index:-1;width:440px;height:440px;border:1px solid rgba(255,236,220,.12);border-radius:50%;right:-180px;top:-175px;box-shadow:0 0 0 42px rgba(255,236,220,.025),0 0 0 88px rgba(255,236,220,.02)}
+.login-copy{max-width:700px;padding:clamp(0px,1.4vw,20px) 0}
+.login-copy .brand{gap:14px;margin-bottom:clamp(28px,4vw,48px)}
+.login-copy .logo{width:49px;height:49px;border-radius:16px;background:linear-gradient(145deg,#f1d7bd,#b97562)!important;color:#392b3b;font-size:21px;box-shadow:0 9px 24px rgba(0,0,0,.18)}
+.login-copy .brand strong{font-size:20px;letter-spacing:-.4px}
+.login-copy .brand small{max-width:300px;font-size:11px;letter-spacing:.25px;color:#d8c9d4}
+.login-copy .eyebrow{display:flex;align-items:center;gap:10px;color:#e6b894;font-size:10px;letter-spacing:2.3px}
+.login-copy .eyebrow:before{content:"";width:27px;height:1px;background:#d9a27e}
+.login-copy h1{max-width:650px;margin:17px 0 16px;font-family:Georgia,"Times New Roman",serif;font-size:clamp(40px,5vw,67px);font-weight:500;line-height:1.03;letter-spacing:-1.8px;color:#fff8f0}
+.login-copy h1 span{color:#e6b894}
+.login-copy .login-intro{max-width:590px;font-size:14px;line-height:1.85;color:#d4c8d5;margin:0}
+.campus-visual{position:relative;margin:25px 0 17px;max-width:590px;height:clamp(130px,17vw,190px);overflow:hidden;border:1px solid rgba(255,238,224,.24);border-radius:17px;background:#55404b;box-shadow:0 18px 40px rgba(10,7,17,.22)}
+.campus-visual:after{content:"MANAV RACHNA UNIVERSITY";position:absolute;left:15px;bottom:13px;padding:7px 10px;border:1px solid rgba(255,255,255,.3);border-radius:7px;background:rgba(35,27,41,.68);backdrop-filter:blur(8px);color:#fff4e9;font-size:9px;letter-spacing:1.5px;font-weight:800}
+.campus-visual img{width:100%;height:100%;object-fit:cover;object-position:center 47%;display:block;filter:saturate(.78) contrast(1.04);opacity:.9}
+.workflow-strip{display:grid;grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr) 20px minmax(0,1fr);align-items:center;gap:7px;max-width:590px;margin-top:19px}
+.workflow-strip .workflow-step{min-height:85px;padding:11px 12px;background:rgba(255,249,243,.065);border:1px solid rgba(255,241,230,.14);border-radius:11px;box-shadow:none;gap:5px;color:#f6e8e0}
+.workflow-strip .workflow-step>span{font-size:9px;letter-spacing:1px;color:#e5b38e;font-weight:900}
+.workflow-strip .workflow-step>b{font-size:11px;color:#fff5ed}
+.workflow-strip .workflow-step>small{font-size:10px;line-height:1.4;color:#cdbdc9}
+.workflow-strip .workflow-arrow{color:#d9a27e;text-align:center;font-size:15px}
+.login-trust{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px;color:#b9aab9;font-size:9px;font-weight:800;letter-spacing:1.2px}
+.login-trust i{width:3px;height:3px;border-radius:50%;background:#d7a27f}
+.loginbox{position:relative;justify-self:center;max-width:475px;padding:clamp(25px,3.2vw,39px);border:1px solid rgba(255,255,255,.8);border-radius:22px;background:linear-gradient(145deg,#fffdf9,#fbf4ed);box-shadow:0 28px 85px rgba(8,5,16,.35);overflow:hidden}
+.loginbox:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#b66f5d,#dfb48b,#829b83)}
+.login-brand-mark{display:grid;place-items:center;width:47px;height:47px;margin-bottom:19px;border-radius:15px;background:linear-gradient(145deg,#f0ddd0,#e8c2ad);color:#71434a;font-family:Georgia,serif;font-weight:800;font-size:18px;box-shadow:inset 0 0 0 1px rgba(126,71,69,.1)}
+.loginbox>.eyebrow{display:flex;align-items:center;gap:8px;color:#9b5b4e!important;font-size:9px;letter-spacing:1.8px;font-weight:900}
+.loginbox>.eyebrow:before{content:"";width:17px;height:1px;background:#b56d5d}
+.loginbox h2{margin:9px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(25px,2.5vw,31px);font-weight:600;letter-spacing:-.65px;color:#392b3b}
+.loginbox>p{font-size:12px;line-height:1.6;color:#81737b;margin:7px 0 17px}
+.login-accent{height:1px;background:linear-gradient(90deg,#e6c8b9,#eadfe0,transparent);margin:0 0 19px}
+.role-label{margin-bottom:9px;color:#776773;font-size:9px;letter-spacing:1.5px;font-weight:900}
+.rolecards{gap:8px;margin-bottom:19px}
+.rolecard{min-height:78px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:10px 5px;border:1px solid #eadfe0;border-radius:12px;background:#fffdfa;color:#6c5b67;box-shadow:none;transition:all .18s ease}
+.rolecard .roleicon{display:grid;place-items:center;width:29px;height:29px;margin:0;border-radius:9px;background:#f5ebe5;color:#9b5b4e;font-size:17px}
+.rolecard span:last-child{font-size:11px;font-weight:800}
+.rolecard:hover{transform:translateY(-2px);border-color:#d6b2a6;background:#fff9f4;box-shadow:0 7px 16px rgba(80,48,58,.07)}
+.rolecard.selected{border:1.5px solid #ad6a5c;background:linear-gradient(145deg,#fff6ef,#f6e7df);color:#713f43;box-shadow:0 0 0 3px rgba(173,106,92,.08)}
+.rolecard.selected .roleicon{background:#e8c9bb;color:#713f43}
+.loginbox .field{gap:7px;margin:13px 0}
+.loginbox .field label{font-size:11px;color:#51424e;font-weight:800}
+.loginbox .field input{min-height:45px;padding:12px 13px;border:1px solid #e3d8d9!important;border-radius:10px!important;background:#fff!important;font-size:12px}
+.loginbox .field input::placeholder{color:#b0a4ac}
+.loginbox .field input:focus{border-color:#b7796c!important;box-shadow:0 0 0 4px rgba(169,79,66,.1)!important}
+.loginbox button.primary{min-height:47px;display:flex;justify-content:center;align-items:center;gap:12px;margin-top:17px;border-radius:11px;background:linear-gradient(110deg,#75435a,#9c554c 62%,#b87958);box-shadow:0 10px 22px rgba(117,67,90,.2);font-size:12px;letter-spacing:.15px}
+.loginbox button.primary span{font-size:17px;transition:transform .18s}
+.loginbox button.primary:hover{transform:translateY(-2px);box-shadow:0 14px 27px rgba(117,67,90,.27)}
+.loginbox button.primary:hover span{transform:translateX(3px)}
+.demohelp{margin-top:17px;padding:12px 13px;border:1px solid #ece0d9;border-radius:10px;background:#f8f0ea;color:#81717a;font-size:10px;line-height:1.7}
+.demohelp b{color:#654653;font-size:10px}
+.login-foot{margin-top:19px;padding-top:14px;border-top:1px solid #ece1df;color:#9c8d95;font-size:9px;letter-spacing:1.4px;font-weight:800;text-align:center}
+.login-foot span{padding:0 5px;color:#bc816b}
+@media(max-width:1050px){
+ .login-screen{grid-template-columns:minmax(0,1fr) minmax(340px,.9fr);gap:24px;padding:28px}
+ .login-copy h1{font-size:clamp(36px,4.4vw,52px)}
+ .campus-visual{height:140px}
+ .workflow-strip{gap:4px}
+ .workflow-strip .workflow-step{padding:9px 8px}
+}
+@media(max-width:760px){
+ .login-screen{display:flex;flex-direction:column;justify-content:center;gap:20px;padding:24px 15px}
+ .login-copy{display:block;width:100%;max-width:475px;padding:8px 0 0}
+ .login-copy .brand{margin-bottom:20px}
+ .login-copy .brand small{font-size:10px}
+ .login-copy .eyebrow{font-size:9px;letter-spacing:1.5px}
+ .login-copy h1{font-size:clamp(35px,9vw,48px);margin:12px 0}
+ .login-copy .login-intro{font-size:12px;line-height:1.7}
+ .campus-visual{height:115px;margin:16px 0 12px}
+ .workflow-strip{display:none}
+ .login-trust{font-size:8px;gap:7px;margin-top:12px}
+ .loginbox{width:100%;max-width:475px;padding:24px;margin:0 auto}
+}
+@media(prefers-reduced-motion:reduce){.loginbox button.primary,.rolecard{transition:none}}
+
 </style></head>
 <body>
 <div id="loginScreen" class="login-screen">
