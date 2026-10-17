@@ -776,6 +776,39 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 @media(max-width:760px){.layout{grid-template-columns:minmax(0,1fr)}aside{position:sticky;top:0;z-index:5;padding:8px;border-radius:10px}.nav{margin:0;padding:9px 11px;font-size:12px}.main{padding:18px 12px}.panel{padding:15px}.statcard{padding:14px}.topbar{height:auto;min-height:65px;padding:10px 13px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 
+
+/* Examination analytics — compact, polished progress dashboard */
+#coeanalytics .threecol{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+#coeanalytics .threecol>.panel{min-width:0;margin:0;padding:20px 18px 16px;border:1px solid #e9e1e5;border-radius:19px;background:linear-gradient(155deg,#fffdfb 0%,#fff 62%,#fbf7f4 100%);box-shadow:0 12px 30px rgba(66,43,58,.055);position:relative;overflow:hidden}
+#coeanalytics .threecol>.panel:before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,#503047,#d66c4f,#a7b49b)}
+#coeanalytics .threecol>.panel:nth-child(2):before{background:linear-gradient(90deg,#71866d,#a7b49b,#d8b88a)}
+#coeanalytics .threecol>.panel:nth-child(3):before{background:linear-gradient(90deg,#80556f,#b58a9f,#d66c4f)}
+#coeanalytics .panelhead{align-items:flex-start;flex-wrap:wrap;gap:8px;margin:2px 0 18px}
+#coeanalytics .panelhead h3{font-size:15px;letter-spacing:-.25px;color:#39283a;margin:0}
+#coeanalytics .panelhead .tag{background:#f4e9e9;color:#765064;border:1px solid #ead9df;font-size:10px;letter-spacing:.1px;padding:5px 8px}
+#coeanalytics .barrow{grid-template-columns:minmax(0,1fr) auto;gap:7px 12px;align-items:center;margin:0 0 10px;padding:12px 11px;border:1px solid #eee7e8;border-radius:12px;background:rgba(255,255,255,.84);font-size:12px;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+#coeanalytics .barrow:hover{transform:translateY(-1px);border-color:#ddcbd4;box-shadow:0 7px 16px rgba(80,48,71,.06)}
+#coeanalytics .barrow>span{grid-column:1;grid-row:1;font-size:12px;font-weight:800;color:#493447;line-height:1.35;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#coeanalytics .barrow>b{grid-column:2;grid-row:1 / span 2;align-self:center;min-width:49px;text-align:center;border-radius:9px;padding:7px 8px;background:#f3e9ee;color:#6b3c59;font-size:13px;font-weight:850;font-variant-numeric:tabular-nums}
+#coeanalytics .barrow>div{grid-column:1;grid-row:2;min-width:0}
+#coeanalytics .bartrack{height:7px;margin:0 0 8px;background:#f0e9eb;border-radius:20px;overflow:hidden}
+#coeanalytics .bartrack span{background:linear-gradient(90deg,#503047 0%,#b56a78 70%,#d98a69 100%);border-radius:20px;transition:width .35s ease}
+#coeanalytics .barrow .mini{font-size:10px;line-height:1.5;color:#817783;overflow-wrap:anywhere}
+#coeanalytics .analyticsgrid{gap:14px;margin-bottom:18px}
+#coeanalytics .metric{border:1px solid #eadfe3;border-radius:16px;padding:17px 19px;background:linear-gradient(145deg,#fffdfb,#fff);box-shadow:0 8px 24px rgba(66,43,58,.045);position:relative;overflow:hidden}
+#coeanalytics .metric:after{content:"";position:absolute;width:65px;height:65px;border-radius:50%;right:-24px;top:-27px;background:rgba(214,108,79,.09)}
+#coeanalytics .metric b{color:#503047;font-size:29px;letter-spacing:-.8px;line-height:1.2;margin:8px 0 4px;font-variant-numeric:tabular-nums}
+#coeanalytics .metric .mini{font-size:11px;color:#837783}
+#coeanalytics #datesheetTracker{border-radius:12px;overflow:hidden}
+#coeanalytics #datesheetTracker table{border-collapse:separate;border-spacing:0;min-width:900px}
+#coeanalytics #datesheetTracker th{background:#f7f1f2;color:#705b6b;padding:13px 12px}
+#coeanalytics #datesheetTracker td{padding:13px 12px;background:#fff}
+#coeanalytics #datesheetTracker tbody tr:hover td{background:#fdf8f5}
+#coeanalytics #analyticsFilter{background:#fffaf7!important;border-color:#e7dce1!important;color:#503047}
+@media(max-width:1180px){#coeanalytics .threecol{grid-template-columns:repeat(2,minmax(0,1fr))}#coeanalytics .threecol>.panel:last-child{grid-column:1/-1}}
+@media(max-width:760px){#coeanalytics .threecol{grid-template-columns:1fr;gap:13px}#coeanalytics .threecol>.panel:last-child{grid-column:auto}#coeanalytics .threecol>.panel{padding:18px 14px 12px}#coeanalytics .analyticsgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}#coeanalytics .metric{padding:14px}#coeanalytics .metric b{font-size:25px}#coeanalytics .barrow{padding:11px 10px}}
+@media(max-width:420px){#coeanalytics .analyticsgrid{grid-template-columns:1fr 1fr}#coeanalytics .panelhead .tag{white-space:normal}}
+
 </style></head>
 <body>
 <div id="loginScreen" class="login-screen">
