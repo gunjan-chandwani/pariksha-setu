@@ -981,7 +981,7 @@ function parseSyllabusTopicText(text){
       if(colon && /^(networking|java database connectivity|java servlets|java server pages|frameworks in java|swing components|collection framework)$/i.test(colon[1].trim())){
         return [colon[1].trim(), ...colon[2].split(/\s*,\s*/)];
       }
-      return part.split(/(?<=[.!?])\s+|(?<!\b(?:e\.g|i\.e))\s*,\s*/i);
+      return part.split(/(?<=[.!?])\s+|\s*,\s*/i);
     });
     for(let part of parts){
       part=part.replace(/^[\s•●▪◦◆\-*]+/,'').replace(/^\(?\d+(?:\.\d+)*[.)]?\s+/,'').replace(/\s+/g,' ').replace(/[;,.|]+$/,'').trim();
