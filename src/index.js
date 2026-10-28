@@ -74,7 +74,7 @@ export default {
       const email = String(body.email || "").toLowerCase().trim();
       const password = String(body.password || "");
       const requestedRole = String(body.role || "");
-      if (!email || !password || !["Faculty", "COE", "Moderator"].includes(requestedRole)) {
+      if (!email || !password || !["Faculty", "OBE", "COE", "Moderator"].includes(requestedRole)) {
         return json({ error: "Enter your institutional email, password, and assigned portal role." }, 400);
       }
       if (!configured(env)) return json({ error: "Authentication service is not configured. Contact the portal administrator." }, 503);
