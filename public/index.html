@@ -898,8 +898,8 @@ function renderRoleWorkflow(){
  COE:{title:'Examination Office Process',steps:[['Review Status','Monitor verified and submitted question banks'],['Datesheet & Blueprint','Select course, exam, marks and blueprint'],['Generate Paper','Choose eligible questions from approved banks'],['Moderator Review','Send generated paper for independent review'],['Handle Requests','Process modification and syllabus change requests'],['Finalise Version','Approve changes and manage release/versioning']]},
  Moderator:{title:'Independent Moderation Process',steps:[['Review Queue','Open papers waiting for moderation'],['Check Paper','Review question wording, CO, BT and marks'],['Edit in Moderator Workspace','Apply corrections here; do not send edits to Faculty'],['Add Comments','Record clear reasons for requested changes'],['Approve or Return','Submit the moderation decision to COE'],['COE Final Check','COE reviews moderated paper before release']]}
  };
- const item=flows[window.activeRole]||flows.Faculty;
- const current={Faculty:2,OBE:1,COE:3,Moderator:2}[window.activeRole]||1;
+ const item=flows[activeRole]||flows.Faculty;
+ const current={Faculty:2,OBE:1,COE:3,Moderator:2}[activeRole]||1;
  strip.innerHTML='<div class="flow-caption">'+item.title+' · role-based status flow</div>'+item.steps.map((step,i)=>'<div class="flow-node '+(i===current?'current':i<current?'done':'')+'"><span class="flow-num">'+String(i+1).padStart(2,'0')+'</span><strong>'+step[0]+'</strong><small>'+step[1]+'</small></div>').join('');
 }
 
