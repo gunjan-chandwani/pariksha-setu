@@ -935,6 +935,124 @@ tbody tr:hover td{background:#f7faff}
  .campus-visual img{height:145px}
 }
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* LOGIN PAGE REDESIGN — October 2026 */
+/* Login-only visual refresh. Dashboard styles and authentication markup remain unchanged. */
+html,body{min-height:100%;margin:0}
+#loginScreen.login-screen{
+  min-height:100svh;box-sizing:border-box;display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(390px,.92fr);
+  align-items:center;gap:clamp(32px,6vw,96px);
+  padding:clamp(28px,5vw,76px);
+  color:#f8fbff;
+  background:
+    radial-gradient(ellipse at 12% 12%,rgba(43,133,193,.28),transparent 35%),
+    radial-gradient(ellipse at 82% 90%,rgba(24,173,165,.18),transparent 32%),
+    linear-gradient(132deg,#071b34 0%,#102e50 58%,#153c5d 100%);
+  overflow:hidden;position:relative;
+}
+#loginScreen .login-copy{width:100%;max-width:740px;justify-self:center}
+#loginScreen .login-copy .brand{display:flex;align-items:center;gap:14px;margin:0 0 clamp(28px,5vh,56px)}
+#loginScreen .login-copy .logo{
+  width:52px;height:52px;display:grid;place-items:center;border-radius:15px;
+  color:#0d2945;background:linear-gradient(145deg,#fff,#b9e8ee);
+  font-size:22px;font-weight:900;box-shadow:0 12px 28px #020d1c55
+}
+#loginScreen .login-copy .brand strong{display:block;color:#fff;font-size:21px;letter-spacing:-.4px}
+#loginScreen .login-copy .brand small{display:block;color:#b7cce0;font-size:11px;margin-top:4px}
+#loginScreen .login-copy>.eyebrow{color:#7ee0d7;font-size:10px;letter-spacing:2.1px;font-weight:850}
+#loginScreen .login-copy h1{
+  color:#fff;font-size:clamp(40px,5vw,68px);line-height:1.04;
+  letter-spacing:-2.4px;font-weight:800;margin:18px 0 18px;max-width:680px
+}
+#loginScreen .login-copy h1 span{color:#7ee0d7}
+#loginScreen .login-copy .login-intro{
+  color:#c2d3e4;font-size:14px;line-height:1.85;max-width:610px;margin:0
+}
+#loginScreen .campus-visual{
+  max-width:660px;margin:25px 0 16px;padding:0;border:1px solid #ffffff35;
+  border-radius:15px;overflow:hidden;background:#183b5c;
+  box-shadow:0 18px 42px #020d1c55
+}
+#loginScreen .campus-visual img{display:block;width:100%;height:clamp(145px,19vh,205px);object-fit:cover;object-position:center 48%}
+#loginScreen .workflow-strip{max-width:660px;display:grid;grid-template-columns:1fr 18px 1fr 18px 1fr;gap:7px;margin:16px 0}
+#loginScreen .workflow-step{min-width:0;display:flex;flex-direction:column;gap:5px;padding:12px 13px;border:1px solid #ffffff28;border-radius:11px;background:#ffffff0d}
+#loginScreen .workflow-step span{color:#7ee0d7;font-size:10px;font-weight:900}
+#loginScreen .workflow-step b{color:#fff;font-size:12px}
+#loginScreen .workflow-step small{color:#b8cde0;font-size:10px;line-height:1.4}
+#loginScreen .workflow-arrow{display:grid;place-items:center;color:#7ee0d7}
+#loginScreen .login-trust{display:flex;gap:10px;align-items:center;flex-wrap:wrap;color:#a9c4d9;font-size:9px;font-weight:850;letter-spacing:1px}
+#loginScreen .login-trust i{width:4px;height:4px;border-radius:50%;background:#7ee0d7}
+#loginScreen .loginbox{
+  width:100%;max-width:465px;box-sizing:border-box;justify-self:center;
+  padding:clamp(27px,3vw,42px);border:1px solid #e6edf3;border-radius:19px;
+  background:#fff;color:#1c2d42;box-shadow:0 28px 85px #020d1c66
+}
+#loginScreen .login-brand-mark{
+  width:48px;height:48px;display:grid;place-items:center;margin:0 0 22px;
+  border-radius:13px;background:linear-gradient(145deg,#0e3d67,#147b91);
+  color:#fff;font-size:17px;font-weight:900;box-shadow:0 8px 18px #0e3d6728
+}
+#loginScreen .loginbox>.eyebrow{color:#147b83!important;font-size:10px;letter-spacing:1.8px;font-weight:900}
+#loginScreen .loginbox h2{color:#102d4a;font-size:27px;letter-spacing:-.8px;margin:10px 0 5px}
+#loginScreen .loginbox>p{color:#718096;font-size:12px;line-height:1.6;margin:0}
+#loginScreen .login-accent{width:48px;height:3px;margin:20px 0;background:#16a6a0;border-radius:4px}
+#loginScreen .role-label{color:#53677d;font-size:10px;letter-spacing:1.2px;font-weight:900;margin:19px 0 9px}
+#loginScreen .rolecards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:0 0 20px}
+#loginScreen .rolecard{
+  min-height:79px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  border:1px solid #e0e8ef;border-radius:11px;background:#f8fafc;color:#52677c;
+  padding:10px 6px;box-shadow:none;transition:.18s ease
+}
+#loginScreen .rolecard .roleicon{font-size:21px;color:#247c91}
+#loginScreen .rolecard span:last-child{font-size:11px;font-weight:800}
+#loginScreen .rolecard.selected{background:#eaf7f6;border:1.5px solid #168e91;color:#125c69;box-shadow:inset 0 0 0 1px #168e9120}
+#loginScreen #loginForm .field{display:flex;flex-direction:column;gap:7px;margin:14px 0}
+#loginScreen #loginForm .field label{color:#3c5268;font-size:11px;font-weight:800}
+#loginScreen #loginForm .field input{
+  width:100%;box-sizing:border-box;min-height:47px;padding:12px 13px;
+  border:1px solid #dce5ed;border-radius:9px;background:#fbfcfe;color:#1c2d42;font-size:13px
+}
+#loginScreen #loginForm .field input:focus{outline:none;border-color:#249a9b;box-shadow:0 0 0 3px #249a9b1c;background:#fff}
+#loginScreen #loginForm button.primary{
+  width:100%;min-height:49px;margin-top:10px;border:0;border-radius:9px;
+  background:linear-gradient(100deg,#126b88,#159b9b);color:#fff;font-size:13px;font-weight:850;
+  box-shadow:0 9px 20px #137f8b30
+}
+#loginScreen #loginForm button.primary:hover{filter:brightness(1.06);transform:translateY(-1px)}
+#loginScreen .demohelp{margin-top:18px;padding:13px 14px;border:1px solid #e4edf0;border-radius:10px;background:#f5f9fa;color:#66798b;font-size:10px;line-height:1.7}
+#loginScreen .demohelp b{color:#24465b}
+#loginScreen .login-foot{margin-top:22px;color:#91a0ae;font-size:9px;letter-spacing:1.2px}
+#loginScreen .login-foot span{color:#168e91}
+@media(max-width:1050px){
+ #loginScreen.login-screen{grid-template-columns:minmax(0,1fr) minmax(350px,.9fr);gap:24px;padding:28px}
+ #loginScreen .login-copy h1{font-size:clamp(36px,4.5vw,52px)}
+ #loginScreen .campus-visual img{height:145px}
+ #loginScreen .workflow-strip{grid-template-columns:1fr;gap:6px}
+ #loginScreen .workflow-arrow{display:none}
+}
+@media(max-width:780px){
+ #loginScreen.login-screen{grid-template-columns:1fr;gap:25px;padding:24px 17px 30px}
+ #loginScreen .login-copy{max-width:560px}
+ #loginScreen .login-copy .brand{margin-bottom:23px}
+ #loginScreen .login-copy h1{font-size:clamp(35px,9vw,48px)}
+ #loginScreen .login-copy .login-intro{font-size:13px}
+ #loginScreen .campus-visual{margin:18px 0 12px}
+ #loginScreen .campus-visual img{height:135px}
+ #loginScreen .workflow-strip{grid-template-columns:repeat(3,minmax(0,1fr))}
+ #loginScreen .workflow-step{padding:9px}
+ #loginScreen .workflow-step small{font-size:9px}
+ #loginScreen .workflow-arrow{display:none}
+ #loginScreen .loginbox{max-width:560px;padding:25px 21px}
+}
+@media(max-width:430px){
+ #loginScreen .login-copy .brand strong{font-size:18px}
+ #loginScreen .login-copy h1{font-size:35px;letter-spacing:-1.5px}
+ #loginScreen .workflow-strip{grid-template-columns:1fr}
+ #loginScreen .workflow-step{padding:10px 12px}
+ #loginScreen .loginbox h2{font-size:24px}
+}
+
 </style></head>
 <body>
 <div id="loginScreen" class="login-screen">
