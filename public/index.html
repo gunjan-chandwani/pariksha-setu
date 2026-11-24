@@ -1159,6 +1159,33 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 #app #dashboard .heading{align-items:center!important;margin-bottom:18px!important}
 #app #dashboard .heading .tag{background:#e8eef5!important;color:#34516e!important;border:1px solid #d8e2ed!important;padding:7px 12px!important;border-radius:7px!important}
 @media(max-width:650px){#app #dashboard>.cards{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}#app #dashboard .statcard{padding:12px!important}}
+
+/* COE paper creation — compact examination workspace */
+#app #coe .heading{margin:0 0 16px!important}
+#app #coe .heading h1{font-size:26px!important;letter-spacing:-.6px!important}
+#app #coe .heading .tag{background:#e8eef5!important;color:#34516e!important;border:1px solid #d8e2ed!important}
+#app #coe>.notice{background:#edf4fc!important;border:1px solid #d5e4f5!important;border-left:3px solid #527da5!important;color:#34516e!important;padding:10px 14px!important;font-size:12px!important;border-radius:8px!important;margin:0 0 16px!important}
+#app #coe>.panel{padding:18px!important;border-radius:12px!important}
+#app #coe>.panel>h3{font-size:17px!important;color:#173650!important;margin:0 0 12px!important;padding-bottom:10px!important;border-bottom:1px solid #e4eaf1!important}
+#app #coe .formgrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px 16px!important}
+#app #coe>.panel>.formgrid{grid-template-columns:repeat(3,minmax(0,1fr))!important;margin-top:0!important}
+#app #coe .field{min-width:0!important;gap:5px!important;margin-bottom:0!important}
+#app #coe .field label{font-size:12px!important;font-weight:650!important;color:#344e68!important;margin:0 0 5px!important}
+#app #coe .field input,#app #coe .field select,#app #coe .field textarea{width:100%!important;min-width:0!important;min-height:38px!important;padding:8px 10px!important;font-size:13px!important;background:#fff!important;color:#233b54!important;border:1px solid #cfdbe8!important;border-radius:7px!important;box-shadow:none!important}
+#app #coe .field input:focus,#app #coe .field select:focus,#app #coe .field textarea:focus{border-color:#527da5!important;outline:2px solid #dce9f8!important;outline-offset:0!important}
+#app #coe .field small{font-size:11px!important;color:#64748b!important}
+#app #coe .threecol{display:grid!important;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr)!important;gap:14px!important;align-items:start!important}
+#app #coe .threecol>.tile{min-width:0!important;padding:16px!important;border:1px solid #dce5ef!important;border-radius:10px!important;background:#f8fafc!important;box-shadow:none!important}
+#app #coe .threecol>.tile:first-child{grid-row:span 2!important;background:#fff!important;border-top:3px solid #527da5!important}
+#app #coe .tileicon{width:32px!important;height:32px!important;border-radius:8px!important;background:#e8eef7!important;color:#315c86!important;display:grid!important;place-items:center!important;margin-bottom:8px!important}
+#app #coe .tile h3{font-size:15px!important;color:#173650!important;margin:0 0 6px!important}
+#app #coe .tile p{font-size:12px!important;line-height:1.5!important;color:#64748b!important;margin:0 0 12px!important}
+#app #coe .tile button:not(.secondary){background:#24547e!important;color:white!important;padding:10px 14px!important;border-radius:7px!important;font-size:13px!important}
+#app #coe .divider{margin:16px 0!important}
+#app #coe #paperBlueprintRows{overflow-x:auto!important}
+#app #coe .question-picker{max-width:100%!important;overflow-x:auto!important}
+@media(max-width:1100px){#app #coe>.panel>.formgrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}#app #coe .threecol{grid-template-columns:1fr!important}#app #coe .threecol>.tile:first-child{grid-row:auto!important}}
+@media(max-width:600px){#app #coe>.panel>.formgrid,#app #coe .formgrid{grid-template-columns:1fr!important}}
 </style></head>
 <body>
 <div id="loginScreen" class="login-screen">
