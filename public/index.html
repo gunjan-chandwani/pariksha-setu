@@ -1053,6 +1053,47 @@ html,body{min-height:100%;margin:0}
  #loginScreen .loginbox h2{font-size:24px}
 }
 
+
+/* QPMS FINAL WORKFLOW — institutional refresh */
+:root{--navy:#102846;--navy2:#183c65;--blue:#1659c5;--bg:#f3f6fa;--ink:#172c43;--muted:#61738a;--line:#dce5ef;--shadow:0 4px 18px rgba(16,40,70,.055)}
+body{font-family:Inter,"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+#loginScreen.login-screen:not(.hidden){display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr)!important;gap:0!important;max-width:none!important;width:100%!important;min-height:100vh!important;padding:0!important;background:#fff!important;align-items:stretch!important}
+#loginScreen .login-copy{background:linear-gradient(145deg,#102846,#174a83)!important;color:white!important;padding:clamp(28px,5vw,76px)!important;display:flex!important;flex-direction:column!important;justify-content:center!important;gap:16px!important;border-radius:0!important;max-width:none!important;width:100%!important}
+#loginScreen .login-copy h1{font-size:clamp(30px,3.4vw,52px)!important;line-height:1.13!important;letter-spacing:-1.5px!important;color:white!important;margin:0!important}
+#loginScreen .login-copy h1 span,#loginScreen .login-copy .eyebrow{color:#b7d9ff!important}
+#loginScreen .login-copy .brand strong,#loginScreen .login-copy .brand small,#loginScreen .login-intro{color:#e2edfa!important}
+#loginScreen .campus-visual{width:100%!important;height:clamp(140px,23vh,240px)!important;margin:0!important;background:#15395f!important;border-radius:12px!important;overflow:hidden!important}
+#loginScreen .campus-visual img{width:100%!important;height:100%!important;object-fit:contain!important}
+#loginScreen .workflow-strip{display:flex!important;gap:8px!important;align-items:center!important;background:transparent!important;padding:0!important}
+#loginScreen .workflow-step{flex:1!important;min-width:0!important;background:#ffffff12!important;border:1px solid #ffffff30!important;border-radius:10px!important;padding:10px!important;color:white!important}
+#loginScreen .workflow-step b,#loginScreen .workflow-step small{color:#e5efff!important}
+#loginScreen .loginbox{position:relative!important;inset:auto!important;transform:none!important;align-self:center!important;justify-self:center!important;width:min(88%,440px)!important;max-width:440px!important;padding:30px!important;border:0!important;box-shadow:none!important;background:#fff!important;color:var(--ink)!important;text-align:center!important}
+#loginScreen .loginbox h2{font-size:27px!important;letter-spacing:-.7px!important;color:var(--navy)!important}
+#loginScreen .rolecards{display:flex!important;gap:8px!important}
+#loginScreen .rolecard{flex:1!important;background:#f4f7fc!important;color:#28476a!important;border:1px solid #dce5ef!important;box-shadow:none!important;border-radius:8px!important}
+#loginScreen .rolecard.selected{background:#e8f0ff!important;border-color:#1659c5!important;color:#1659c5!important}
+#loginScreen #loginForm{position:relative!important;z-index:1!important;text-align:left!important}
+#loginScreen #loginForm input{width:100%!important;min-height:46px!important;background:white!important;border:1px solid #ccd9e8!important;border-radius:8px!important;color:#172c43!important}
+#loginScreen #loginSubmit{width:100%!important;min-height:46px!important;background:#1659c5!important;color:white!important;border-radius:8px!important}
+#app .topbar{height:68px!important;background:white!important;border-bottom:1px solid var(--line)!important;box-shadow:none!important}
+#app .layout{grid-template-columns:236px minmax(0,1fr)!important;min-height:calc(100vh - 68px)!important}
+#app aside{background:#102846!important;padding:20px 12px!important}
+#app aside .nav{color:#d9e7f7!important;border-radius:7px!important;padding:11px 12px!important;font-size:13px!important;box-shadow:none!important}
+#app aside .nav.active{background:#1659c5!important;color:white!important}
+#app .main{padding:28px clamp(16px,3vw,40px)!important;min-width:0!important}
+#app .heading h1{font-size:26px!important;letter-spacing:-.6px!important;color:#102846!important}
+#app .panel,#app .statcard{background:#fff!important;border:1px solid var(--line)!important;border-radius:12px!important;box-shadow:var(--shadow)!important}
+#app .panel{padding:20px!important}
+#app table{border-collapse:separate!important;border-spacing:0!important;width:100%!important}
+#app th{background:#eaf0f8!important;color:#294767!important;font-size:12px!important;font-weight:700!important;text-align:left!important}
+#app td,#app th{padding:12px 10px!important;border-bottom:1px solid #e5ebf3!important}
+#app tbody tr:hover{background:#f7faff!important}
+#app .tag{border-radius:6px!important;padding:4px 8px!important}
+#app input,#app select,#app textarea{border:1px solid #cedae8!important;border-radius:7px!important}
+#app button:not(.nav){border-radius:7px!important}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #79aaff!important;outline-offset:2px!important}
+@media(max-width:850px){#loginScreen.login-screen:not(.hidden){grid-template-columns:1fr!important}#loginScreen .login-copy{padding:28px!important}#loginScreen .loginbox{margin:20px auto!important}#app .layout{grid-template-columns:1fr!important}#app aside{display:flex!important;flex-wrap:wrap!important;gap:4px!important}#app aside .nav{width:auto!important}#app .topbar{height:auto!important;flex-wrap:wrap!important;padding:12px!important}}
+
 </style></head>
 <body>
 <div id="loginScreen" class="login-screen">
