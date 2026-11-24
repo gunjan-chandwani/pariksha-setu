@@ -1094,6 +1094,28 @@ body{font-family:Inter,"Segoe UI",system-ui,sans-serif;background:var(--bg);colo
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #79aaff!important;outline-offset:2px!important}
 @media(max-width:850px){#loginScreen.login-screen:not(.hidden){grid-template-columns:1fr!important}#loginScreen .login-copy{padding:28px!important}#loginScreen .loginbox{margin:20px auto!important}#app .layout{grid-template-columns:1fr!important}#app aside{display:flex!important;flex-wrap:wrap!important;gap:4px!important}#app aside .nav{width:auto!important}#app .topbar{height:auto!important;flex-wrap:wrap!important;padding:12px!important}}
 
+
+/* Compact dashboard layout — scoped to authenticated workspace */
+#app .main{padding:24px!important}
+#app .layout{grid-template-columns:220px minmax(0,1fr)!important;gap:16px!important}
+#app aside{border-radius:12px!important;padding:16px 10px!important}
+#app .heading{margin-bottom:20px!important}
+#app .heading h1{font-size:28px!important}
+#app #roleWorkflowOverview.workflow-overview{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;padding:16px!important;margin:0 0 20px!important;background:#fff!important;border:1px solid #dce5ef!important;border-radius:12px!important;box-shadow:0 3px 12px #10284608!important}
+#app #roleWorkflowOverview .flow-caption{grid-column:1/-1!important;font-size:13px!important;font-weight:700!important;color:#344c70!important;margin:0 0 4px!important}
+#app #roleWorkflowOverview .flow-node{display:grid!important;grid-template-columns:32px minmax(0,1fr)!important;grid-template-rows:auto auto!important;align-content:start!important;align-items:center!important;column-gap:10px!important;row-gap:5px!important;min-height:100px!important;height:auto!important;padding:12px!important;margin:0!important;background:#f8fafc!important;border:1px solid #dce5ef!important;border-top:3px solid #a5b8d0!important;border-radius:8px!important;box-shadow:none!important}
+#app #roleWorkflowOverview .flow-num{display:grid!important;place-items:center!important;width:30px!important;height:30px!important;grid-row:1/3!important;align-self:start!important;border-radius:8px!important;background:#e5edf8!important;color:#234b80!important;font-size:12px!important;font-weight:800!important;margin:0!important}
+#app #roleWorkflowOverview .flow-node strong{display:block!important;font-size:13px!important;line-height:1.35!important;color:#102846!important}
+#app #roleWorkflowOverview .flow-node small{display:block!important;grid-column:2!important;font-size:12px!important;line-height:1.45!important;color:#53677e!important;margin:0!important}
+#app #roleWorkflowOverview .flow-node.done{border-top-color:#16836c!important;background:#f3faf7!important}
+#app #roleWorkflowOverview .flow-node.done .flow-num{background:#d9f0e7!important;color:#11664f!important}
+#app #roleWorkflowOverview .flow-node.current{border-top-color:#1659c5!important;background:#eef5ff!important}
+#app #roleWorkflowOverview .flow-node.current .flow-num{background:#1659c5!important;color:#fff!important}
+#app .panel,#app .statcard{background:white!important;border-color:#dce5ef!important}
+@media(min-width:1500px){#app #roleWorkflowOverview.workflow-overview{grid-template-columns:repeat(6,minmax(0,1fr))!important}#app #roleWorkflowOverview .flow-node{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:8px!important;min-height:140px!important}}
+@media(max-width:1050px){#app #roleWorkflowOverview.workflow-overview{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:850px){#app .layout{grid-template-columns:1fr!important}#app .main{padding:16px!important}}
+@media(max-width:480px){#app #roleWorkflowOverview.workflow-overview{grid-template-columns:1fr!important}}
 </style></head>
 <body>
 <div id="loginScreen" class="login-screen">
